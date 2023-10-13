@@ -20,8 +20,6 @@ export const validationSchema = Yup.object<IFormValues>({
             'isLessOrEquals100%',
             'Сумма первоначального взноса не может быть больше 100% от стоимости недвижимости',
             function (v) {
-                console.log(this.options);
-
                 return getPercent(removeCommas(v || ''), this.options.context?.cost) <= 100;
             }
         )
@@ -35,6 +33,17 @@ export const validationSchema = Yup.object<IFormValues>({
         .required(requiredMessage),
     type: Yup.string().required(requiredMessage),
     ownership: Yup.string().required(requiredMessage),
-    time: Yup.number().required(requiredMessage),
+    time: Yup.string()
+        .test(
+            'isMoreOrEquals4',
+            'Срок ипотеки не может быть меньше 4 лет',
+            (v) => +removeCommas(v || '') >= 4
+        )
+        .test(
+            'isLessOrEquals30',
+            'Срок ипотеки не может превышать 30 лет',
+            (v) => +removeCommas(v || '') <= 30
+        )
+        .required(requiredMessage),
     monthlyPayment: Yup.number().required(requiredMessage),
 });
