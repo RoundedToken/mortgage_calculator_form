@@ -19,6 +19,7 @@ html {
 }
 
 body {
+    position: relative;
     background: #161616;
     min-height: 100%;
     height: auto;

@@ -15,6 +15,7 @@ export default {
                 my_yellow: '#FBE54D',
                 my_black: '#161616',
                 base_secondary: '#242529',
+                disable_text: '#848484',
             },
         },
         screens: {

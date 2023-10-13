@@ -5,6 +5,8 @@ import { usePostFormMutation } from './store';
 import TextInput from './components/TextInput';
 import MonthPayment from './components/MonthPayment';
 import FirstPayment from './components/FirstPayment';
+import Select from './components/Select';
+import { cityOptions, ownershipOtions, periodOptions, typeOptions } from './constants';
 
 const MortgageForm = () => {
     const [update] = usePostFormMutation();
@@ -20,7 +22,7 @@ const MortgageForm = () => {
                     type: '',
                     ownership: '',
                     time: '30',
-                    monthlyPayment: '',
+                    monthlyPayment: '2684',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={async (values, { setSubmitting }) => {
@@ -47,31 +49,45 @@ const MortgageForm = () => {
                                 maxLength={10}
                             />
 
-                            <TextInput id="city" name="city" type="text" label="Город покупки недвижимости" />
+                            <Select
+                                id="city"
+                                name="city"
+                                type="text"
+                                label="Город покупки недвижимости"
+                                options={cityOptions}
+                                placeholder="Выберите город"
+                                isSearch
+                            />
 
-                            <TextInput
+                            <Select
                                 id="period"
                                 name="period"
                                 type="text"
                                 label="Когда вы планируете оформить ипотеку?"
+                                options={periodOptions}
+                                placeholder="Выберите период"
                             />
 
                             <FirstPayment firstPayment={values.firstPayment} cost={values.cost} />
 
-                            <TextInput
+                            <Select
                                 className="tablet:row-start-3"
                                 id="type"
                                 name="type"
                                 type="text"
                                 label="Тип недвижимости"
+                                options={typeOptions}
+                                placeholder="Выберите тип недвижимости"
                             />
 
-                            <TextInput
+                            <Select
                                 id="ownership"
                                 name="ownership"
                                 type="text"
                                 label="Вы уже владеете недвижимостью?"
                                 className="tablet:row-start-4"
+                                options={ownershipOtions}
+                                placeholder="Выберите ответ"
                             />
 
                             <span className=" col-span-3 w-full h-px bg-base_stroke tablet:col-span-2 mobile:col-span-1" />
@@ -98,7 +114,6 @@ const MortgageForm = () => {
                         <div className="w-full border-t border-base_stroke py-8 mt-auto flex justify-center mobile:bg-base_secondary mobile:py-6 mobile:px-5">
                             <div className="w-[1130px] flex justify-end tablet:w-full tablet:pr-[55px] mobile:p-0">
                                 <button
-                                    disabled={!isValid}
                                     className={`${
                                         isValid && dirty ? 'bg-my_yellow' : 'bg-slate-500'
                                     } px-4 py-3 text-my_black rounded-lg font-inter font-medium w-[249px] h-[56px] mobile:w-[350px] mobile:mx-auto`}
