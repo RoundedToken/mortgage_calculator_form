@@ -4,6 +4,8 @@
 
 :root {
     font-family: Inter, Arial;
+    font-weight: 400;
+    color: white;
 }
 
 * {
@@ -12,7 +14,26 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background: #161616;
+    min-height: 100%;
+    height: auto;
+    display: flex;
+}
+
+#root {
     padding-top: 120px;
+    flex: 1;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input {
+    outline: none;
 }
