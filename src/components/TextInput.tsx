@@ -1,9 +1,10 @@
 import { FieldConfig, useField } from 'formik';
-import React, { FC, ReactNode, useEffect, useRef } from 'react';
+import React, { FC, ReactNode, useRef } from 'react';
 import { removeCommas } from '../utils/removeCommas';
 import FieldWrapper from './FieldWrapper';
 import { formatNumber } from '../utils/formatNumber';
 import currenciesImg from '../assets/Currencies.svg';
+import RangeBar from './RangeBar';
 
 interface ITextInput {
     label: string;
@@ -13,8 +14,6 @@ interface ITextInput {
     infoMessage?: ReactNode;
     limits?: { min: string; max: string };
     fixedValue?: string;
-    min?: number;
-    max?: number;
     tooltip?: ReactNode;
 }
 
@@ -28,8 +27,6 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
     isFormatted = false,
     limits,
     fixedValue,
-    min,
-    max,
     tooltip,
     ...props
 }) => {
@@ -37,14 +34,6 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
     const { value } = field;
     const { setValue } = helpers;
     const containerRef = useRef<HTMLDivElement>(null);
-    const circleRef = useRef<HTMLSpanElement>(null);
-    const per = percent ?? 0;
-    const widthPercent = Math.min(per, 100);
-    const monthPay =
-        fixedValue &&
-        min &&
-        max &&
-        (+fixedValue < min ? min.toString() : +fixedValue > max ? max.toString() : fixedValue);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -61,18 +50,6 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
 
         setValue(newValue);
     };
-
-    useEffect(() => {
-        if (containerRef.current && circleRef.current && percent !== undefined) {
-            const containerWidth = containerRef.current.offsetWidth;
-            const circleWidthHalf = circleRef.current.offsetWidth / 2;
-            const maxWidth = containerWidth - circleWidthHalf;
-            const dynamicWidth = (containerWidth * percent) / 100 - circleWidthHalf;
-            const translateX = Math.min(maxWidth, dynamicWidth);
-
-            circleRef.current.style.transform = `translateX(${translateX}px)`;
-        }
-    }, [containerRef, circleRef, percent]);
 
     return (
         <FieldWrapper
@@ -94,28 +71,17 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
                     } flex border bg-base_inputs rounded-md text-primary px-6 py-3 text-xl font-normal relative`}
                 >
                     <input
+                        type="text"
                         className="bg-transparent w-full"
                         {...field}
                         {...props}
-                        value={monthPay ? formatNumber(monthPay) : isFormatted ? formatNumber(value) : value}
+                        value={fixedValue ? formatNumber(fixedValue) : isFormatted ? formatNumber(value) : value}
                         onChange={handleChange}
                     />
 
                     <img width={20} height={20} src={currenciesImg} alt="Currencies" />
 
-                    {percent !== undefined && (
-                        <>
-                            <span
-                                style={{ width: `${widthPercent}%` }}
-                                className={`h-0.5 bg-my_yellow absolute bottom-[-1px] left-0 rounded-[1.5px]`}
-                            />
-
-                            <span
-                                ref={circleRef}
-                                className="bg-my_yellow rounded-full w-3 h-3 absolute bottom-[-6px] translate-y-1/2 left-0"
-                            />
-                        </>
-                    )}
+                    {percent !== undefined && <RangeBar containerRef={containerRef} percent={percent} />}
                 </div>
 
                 {limits && (

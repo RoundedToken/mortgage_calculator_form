@@ -1,3 +1,5 @@
+export const requiredMessage = 'Выберите ответ';
+
 export const cityOptions = ['Тель-авив', 'Акко', 'Ариэль', 'Иерусалим', 'Нетания', 'Холон'] as const;
 
 export const periodOptions = [

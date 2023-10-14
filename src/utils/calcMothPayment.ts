@@ -1,3 +1,5 @@
+import { removeCommas } from './removeCommas';
+
 /**
  * Рассчитывает ежемесячный платеж по ипотеке
  *
@@ -7,15 +9,19 @@
  * @returns Ежемесячная сумма платежа
  */
 export function calcMonthPayment(
-    propertyCost: number,
-    initialPayment: number,
-    years: number
+    propertyCost: number | string,
+    initialPayment: number | string,
+    years: number | string,
 ): number {
+    const propertyCostNumber = typeof propertyCost === 'string' ? +removeCommas(propertyCost) : propertyCost;
+    const initialPaymentNumber = typeof initialPayment === 'string' ? +removeCommas(initialPayment) : initialPayment;
+    const yearsNumber = typeof years === 'string' ? +removeCommas(years) : years;
+
     const interestRate = 0.05; // 5% годовых
 
-    const months = years * 12; // кол-во месяцев
+    const months = yearsNumber * 12; // кол-во месяцев
 
-    const creditAmount = propertyCost - initialPayment;
+    const creditAmount = propertyCostNumber - initialPaymentNumber;
 
     const monthlyRate = interestRate / 12;
 

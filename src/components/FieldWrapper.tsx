@@ -16,7 +16,7 @@ interface IFieldWrapper {
     meta: FieldMetaProps<string>;
     id?: string;
     name: string;
-    containerRef: React.RefObject<HTMLDivElement>;
+    containerRef?: React.RefObject<HTMLDivElement>;
     tooltip?: ReactNode;
 }
 

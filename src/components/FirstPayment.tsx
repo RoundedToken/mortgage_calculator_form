@@ -15,7 +15,6 @@ const FirstPayment = ({ cost, firstPayment }: IFirstPayment) => {
         <TextInput
             id="firstPayment"
             name="firstPayment"
-            type="text"
             label="Первоначальный взнос"
             className="tablet:row-start-3"
             isFormatted

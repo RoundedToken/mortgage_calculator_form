@@ -28,11 +28,11 @@ const Select: FC<ISelect & FieldHookConfig<string>> = ({
     const { touched, error } = meta;
     const [isOpen, setIsOpen] = useState(false);
     const [hasBeenOpened, setHasBeenOpened] = useState(false);
-    const containerRef = useRef<HTMLDivElement>(null);
     const selectRef = useRef<HTMLDivElement>(null);
     const [searchValue, setSearchValue] = useState('');
     const filteredOptions = options.filter(option => option.toLowerCase().includes(searchValue.toLowerCase()));
 
+    //Сортировка options
     if (isSearch) filteredOptions.sort();
 
     const dropdownItemHandler = useCallback(
@@ -52,7 +52,7 @@ const Select: FC<ISelect & FieldHookConfig<string>> = ({
     }, [isOpen, hasBeenOpened, setTouched]);
 
     return (
-        <FieldWrapper containerRef={containerRef} meta={meta} label={label} name={props.name} className={className}>
+        <FieldWrapper meta={meta} label={label} name={props.name} className={className}>
             <div
                 className={`border-base_stroke
                 ${error && touched && 'border-error'}
