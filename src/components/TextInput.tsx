@@ -15,12 +15,10 @@ interface ITextInput {
     fixedValue?: string;
     min?: number;
     max?: number;
+    tooltip?: ReactNode;
 }
 
-type BuiltInTextInputProps = React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
->;
+type BuiltInTextInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = ({
     label,
@@ -32,6 +30,7 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
     fixedValue,
     min,
     max,
+    tooltip,
     ...props
 }) => {
     const [field, meta, helpers] = useField(props);
@@ -84,20 +83,21 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
             id={props.id}
             className={className}
             infoMessage={infoMessage}
+            tooltip={tooltip}
         >
             <div className="flex flex-col gap-[5px]">
-                <div className="flex border-base_stroke border bg-base_inputs rounded-md text-primary px-6 py-3 text-xl font-normal relative">
+                <div
+                    className={`border-base_stroke ${
+                        meta.error &&
+                        meta.touched &&
+                        (percent ? 'border-l-error border-t-error border-r-error' : 'border-error')
+                    } flex border bg-base_inputs rounded-md text-primary px-6 py-3 text-xl font-normal relative`}
+                >
                     <input
                         className="bg-transparent w-full"
                         {...field}
                         {...props}
-                        value={
-                            monthPay
-                                ? formatNumber(monthPay)
-                                : isFormatted
-                                ? formatNumber(value)
-                                : value
-                        }
+                        value={monthPay ? formatNumber(monthPay) : isFormatted ? formatNumber(value) : value}
                         onChange={handleChange}
                     />
 

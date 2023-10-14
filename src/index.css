@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-    font-family: Inter, Arial;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     color: white;
 }
@@ -37,4 +37,11 @@ input[type='number']::-webkit-inner-spin-button {
 
 input {
     outline: none;
+}
+
+.simplebar-scrollbar::before {
+    background: #3f444d;
+    border-radius: 10px;
+    left: 5px;
+    width: 4px;
 }

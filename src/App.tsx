@@ -116,7 +116,7 @@ const MortgageForm = () => {
                                 <button
                                     className={`${
                                         isValid && dirty ? 'bg-my_yellow' : 'bg-slate-500'
-                                    } px-4 py-3 text-my_black rounded-lg font-inter font-medium w-[249px] h-[56px] mobile:w-[350px] mobile:mx-auto`}
+                                    } px-4 py-3 text-my_black rounded-lg font-medium w-[249px] h-[56px] mobile:w-[350px] mobile:mx-auto`}
                                     type="submit"
                                 >
                                     Продолжить

@@ -1,14 +1,17 @@
 import { ReactNode } from 'react';
 import checkImg from '../assets/Check.svg';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 const Dropdown = ({ children }: { children: ReactNode }) => {
     return (
-        <div
+        <SimpleBar
             style={{ boxShadow: '0px 8px 32px 0px rgba(0, 0, 0, 0.16)' }}
+            autoHide={false}
             className="flex flex-col h-min max-h-[216px] overflow-auto absolute bg-base_secondary border-base_stroke border rounded-lg w-[325px] py-2 mobile:w-[350px]"
         >
             {children}
-        </div>
+        </SimpleBar>
     );
 };
 

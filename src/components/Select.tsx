@@ -1,4 +1,4 @@
-import { FC, useCallback, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import FieldWrapper from './FieldWrapper';
 import { FieldHookConfig, useField } from 'formik';
 import Portal from './Portal';
@@ -11,13 +11,23 @@ interface ISelect {
     options: readonly string[];
     placeholder: string;
     isSearch?: boolean;
+    className?: string;
 }
 
-const Select: FC<ISelect & FieldHookConfig<string>> = ({ isSearch = false, placeholder, options, label, ...props }) => {
+const Select: FC<ISelect & FieldHookConfig<string>> = ({
+    className,
+    isSearch = false,
+    placeholder,
+    options,
+    label,
+    ...props
+}) => {
     const [field, meta, helpers] = useField(props);
     const { value } = field;
-    const { setValue } = helpers;
+    const { setValue, setTouched } = helpers;
+    const { touched, error } = meta;
     const [isOpen, setIsOpen] = useState(false);
+    const [hasBeenOpened, setHasBeenOpened] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const selectRef = useRef<HTMLDivElement>(null);
     const [searchValue, setSearchValue] = useState('');
@@ -33,11 +43,21 @@ const Select: FC<ISelect & FieldHookConfig<string>> = ({ isSearch = false, place
         [setValue],
     );
 
+    useEffect(() => {
+        if (isOpen) {
+            setHasBeenOpened(true);
+        } else if (hasBeenOpened) {
+            setTouched(true);
+        }
+    }, [isOpen, hasBeenOpened, setTouched]);
+
     return (
-        <FieldWrapper containerRef={containerRef} meta={meta} label={label} name={props.name}>
+        <FieldWrapper containerRef={containerRef} meta={meta} label={label} name={props.name} className={className}>
             <div
-                className={`${
-                    isOpen ? 'border-my_yellow' : 'border-base_stroke'
+                className={`border-base_stroke
+                ${error && touched && 'border-error'}
+                ${
+                    isOpen && 'border-my_yellow'
                 } flex justify-between cursor-pointer border bg-base_inputs rounded-md text-primary px-6 py-3 text-base font-normal relative`}
                 ref={selectRef}
                 onClick={() => setIsOpen(prev => !prev)}

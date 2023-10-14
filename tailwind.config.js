@@ -5,7 +5,6 @@ export default {
         extend: {
             fontFamily: {
                 roboto: ['Roboto'],
-                inter: ['Inter', 'sans-serif'],
             },
             colors: {
                 primary: '#FFFFFF',
@@ -16,6 +15,7 @@ export default {
                 my_black: '#161616',
                 base_secondary: '#242529',
                 disable_text: '#848484',
+                tooltip: '#41434E',
             },
         },
         screens: {
