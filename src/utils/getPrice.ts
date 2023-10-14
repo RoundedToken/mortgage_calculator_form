@@ -2,7 +2,7 @@
  * Форматирует число в валютный формат ₪
  *
  * @param  price - Цена в числовом формате
- * @returns  Отформатированная цена в виде строки '1,234 ₪'
+ * @returns  Отформатированная цена в виде строки '1,234  ₪'
  */
 export const getPrice = (price: number | string) => {
     const formatter = new Intl.NumberFormat('he-IL', {
