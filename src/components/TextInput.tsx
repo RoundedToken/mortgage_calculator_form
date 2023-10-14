@@ -15,6 +15,7 @@ interface ITextInput {
     limits?: { min: string; max: string };
     fixedValue?: string;
     tooltip?: ReactNode;
+    isCurrency?: boolean;
 }
 
 type BuiltInTextInputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
@@ -28,6 +29,7 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
     limits,
     fixedValue,
     tooltip,
+    isCurrency = true,
     ...props
 }) => {
     const [field, meta, helpers] = useField(props);
@@ -79,7 +81,7 @@ const TextInput: FC<BuiltInTextInputProps & FieldConfig<string> & ITextInput> = 
                         onChange={handleChange}
                     />
 
-                    <img width={20} height={20} src={currenciesImg} alt="Currencies" />
+                    {isCurrency && <img width={20} height={20} src={currenciesImg} alt="Currencies" />}
 
                     {percent !== undefined && <RangeBar containerRef={containerRef} percent={percent} />}
                 </div>

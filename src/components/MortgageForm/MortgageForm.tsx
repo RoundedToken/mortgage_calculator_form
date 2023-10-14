@@ -88,6 +88,7 @@ const MortgageForm = () => {
                                 limits={{ min: '4 года', max: '30 лет' }}
                                 percent={getPercent(values.time, 30)}
                                 maxLength={2}
+                                isCurrency={false}
                             />
 
                             <MonthPayment
