@@ -1,4 +1,4 @@
-# [Mortgage calculator form](https://mortgage-calculator-form.onrender.com/)
+# [Mortgage Calculator](https://mortgage-calculator-form.onrender.com/)
 
 ## Description
 
