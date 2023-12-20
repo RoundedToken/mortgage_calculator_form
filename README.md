@@ -3,6 +3,9 @@
 ## Description
 
 React SPA "Mortgage calculator" – the application will help calculate the monthly mortgage payment based on the property value, down payment amount and loan term
+<br/>
+<br/>
+You can find `Figma` design [here](https://www.figma.com/file/W7ZFBdpRom3ckDgXaZHGvB/Bankimonline---Test-(Copy)?node-id=0%3A1&mode=dev)
 
 ## Technologies
 
@@ -17,7 +20,7 @@ React SPA "Mortgage calculator" – the application will help calculate the mont
 &emsp;
 <img background-color='#ECD53F' width='64' height="64" src='https://github.com/RoundedToken/mortgage_calculator_form/assets/117864556/a00892e6-9527-46b2-8a43-26d8f0519619'/>
 
-### DevOps stack
+### CI/CD stack
 <p>
 <img background-color='#ECD53F' width='64' src='https://github.com/RoundedToken/rounded_token_app/assets/117864556/51c33644-07db-45ac-b47c-81d340db2bfa'/>
 
