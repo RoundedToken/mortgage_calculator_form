@@ -19,6 +19,8 @@ You can find `Figma` design [here](https://www.figma.com/file/W7ZFBdpRom3ckDgXaZ
 <img background-color='#ECD53F' width='64' src='https://github.com/RoundedToken/yacht_shop_admin/assets/117864556/fdcc9377-62cb-4c87-9349-6ef598ad74d2'/>
 &emsp;
 <img background-color='#ECD53F' width='64' height="64" src='https://github.com/RoundedToken/mortgage_calculator_form/assets/117864556/a00892e6-9527-46b2-8a43-26d8f0519619'/>
+&emsp;
+<img background-color='#ECD53F' width='64' height='64' src='https://github.com/RoundedToken/CoffeeHouse/assets/117864556/e4e58934-0cee-40db-9e4a-eb17fb621dda'/>
 
 ### CI/CD stack
 <p>
